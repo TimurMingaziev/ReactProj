@@ -29,8 +29,11 @@
   "dependencies": {
     "babel-polyfill": "^6.23.0",
     "babel-runtime": "^6.23.0",
+    "highcharts": "^5.0.11",
+    "highcharts-more": "^0.1.2",
     "react": "^0.14.9",
     "react-dom": "^0.14.9",
+    "react-highcharts": "^12.0.0",
     "react-redux": "^4.4.8",
     "redux": "^3.6.0",
     "redux-logger": "^3.0.6",
