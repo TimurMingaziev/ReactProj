@@ -9,7 +9,6 @@ var { minValue, maxValue } = 0;
 
 export default class Page extends Component {
   onChangeSpeed(e) {
-    console.log(this.props)
     if (e.target.value >= minValue && e.target.value <= maxValue)
       this.props.setSpeed(+e.target.value)
   }
