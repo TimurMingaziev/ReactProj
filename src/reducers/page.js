@@ -1,5 +1,8 @@
+// Пока не понятно зачем это
+// Чувствую наговнокодил.
+
 const initialState = {
-  speed: 100
+  speed: 0
 }
 
 export default function page(state = initialState) {

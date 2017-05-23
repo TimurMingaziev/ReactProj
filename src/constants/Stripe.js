@@ -1,0 +1,1 @@
+export const SET_CPU = 'SET_CPU'

@@ -3,7 +3,8 @@ import Highcharts from 'highcharts';
 import SolidGauge from 'highcharts/modules/solid-gauge';
 import ReactHighcharts from 'react-highcharts/bundle/ReactHighcharts'
 
-import { SET_MAX_SPEED_COLOR } from '../constants/Speedometer'
+import { SET_MAX_SPEED } from '../constants/Speedometer'
+import { SET_MIN_SPEED } from '../constants/Speedometer'
 import { SET_SPEED } from '../constants/Speedometer'
 
 HighchartsMore(ReactHighcharts.Highcharts);
@@ -38,14 +39,11 @@ const initialState = {
         },
         series: [{
             name: 'Speed',
-            data: [80],
+            data: [0],
             dataLabels: {
                 format: '<div style="text-align:center"><span style="font-size:25px;color:' +
                 ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
                 '<span style="font-size:12px;color:silver">km/h</span></div>'
-            },
-            tooltip: {
-                valueSuffix: ' km/h'
             }
         }],
         pane: {
@@ -70,8 +68,17 @@ export default function speedometer(state = initialState, action) {
                 return { ...state }
             }
 
-        case SET_MAX_SPEED_COLOR:
-            return { ...state, config: action.payload }
+        case SET_MAX_SPEED:
+            {
+                state.config.yAxis.max = [action.payload];
+                return { ...state }
+            }
+
+        case SET_MIN_SPEED:
+            {
+                state.config.yAxis.min = [action.payload];
+                return { ...state }
+            }
 
         default:
             return state;

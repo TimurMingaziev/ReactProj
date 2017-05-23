@@ -3,17 +3,23 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Page from '../components/Page'
 import * as speedActions from '../actions/SpeedometerActions'
+import * as stripeActions from '../actions/StripeActions'
 import ReactHighcharts from 'react-highcharts/bundle/ReactHighcharts'
 
+import { Line } from 'rc-progress';
 
 class App extends Component {
     render() {
-        const { page, speedometer, stripe } = this.props
+        const { page, speedometer, stripe} = this.props
         const { setSpeed } = this.props.speedActions
+        const { setCPU } = this.props.stripeActions
+        const { setMaxSpeed } = this.props.speedActions
+        const { setMinSpeed } = this.props.speedActions
+        
         return <div>
-            <Page photos={page.photos} speed={page.speed} setSpeed={setSpeed}/>
+            <Page speed={page.speed} setSpeed={setSpeed} setCPU={setCPU} setMinSpeed={setMinSpeed} setMaxSpeed={setMaxSpeed}/>
             <ReactHighcharts config={speedometer.config} />
-            <ReactHighcharts config={stripe.config} />
+            <Line percent={stripe.percent} strokeWidth={stripe.strokeWidth} strokeColor={stripe.strokeColor} gapPosition="top" />
         </div>
     }
 }
@@ -28,7 +34,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        speedActions: bindActionCreators(speedActions, dispatch)
+        speedActions: bindActionCreators(speedActions, dispatch),
+        stripeActions: bindActionCreators(stripeActions, dispatch)
     }
 }
 
