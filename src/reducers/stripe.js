@@ -3,9 +3,6 @@ import Highcharts from 'highcharts';
 import SolidGauge from 'highcharts/modules/solid-gauge';
 import ReactHighcharts from 'react-highcharts/bundle/ReactHighcharts'
 
-import { SET_MAX_SPEED_COLOR } from '../constants/Speedometer'
-import { SET_SPEED } from '../constants/Speedometer'
-
 HighchartsMore(ReactHighcharts.Highcharts);
 SolidGauge(ReactHighcharts.Highcharts);
 
@@ -30,7 +27,7 @@ const initialState = {
             }
         },
         yAxis: {
-            min: 0,
+            min: 100,
             max: 200,
             title: {
                 text: 'Speed'
@@ -51,29 +48,19 @@ const initialState = {
         pane: {
             center: ['50%', '50%'],
             size: '100%',
-            startAngle: 0,
-            endAngle: 360,
+            startAngle: -90,
+            endAngle: 90,
             background: {
-                innerRadius: '60%',
-                outerRadius: '100%',
+                innerRadius: '50%',
+                outerRadius: '50%',
                 shape: 'arc'
             }
         }
     }
 }
 
-export default function speedometer(state = initialState, action) {
-    switch (action.type) {
-        case SET_SPEED:
-            {
-                state.config.series[0].data = [action.payload];
-                return { ...state }
-            }
-
-        case SET_MAX_SPEED_COLOR:
-            return { ...state, config: action.payload }
-
-        default:
+export default function speedometer(state = initialState) {
+   
             return state;
-    }
+    
 }

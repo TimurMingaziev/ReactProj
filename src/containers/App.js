@@ -8,11 +8,12 @@ import ReactHighcharts from 'react-highcharts/bundle/ReactHighcharts'
 
 class App extends Component {
     render() {
-        const { page, speedometer } = this.props
+        const { page, speedometer, stripe } = this.props
         const { setSpeed } = this.props.speedActions
         return <div>
             <Page photos={page.photos} speed={page.speed} setSpeed={setSpeed}/>
             <ReactHighcharts config={speedometer.config} />
+            <ReactHighcharts config={stripe.config} />
         </div>
     }
 }
@@ -20,7 +21,8 @@ class App extends Component {
 function mapStateToProps(state) {
     return {
         page: state.page,
-        speedometer: state.speedometer
+        speedometer: state.speedometer,
+        stripe: state.stripe
     }
 }
 
