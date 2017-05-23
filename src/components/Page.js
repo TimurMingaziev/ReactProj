@@ -1,25 +1,18 @@
-import React, { PropTypes, Component } from 'react'
+import React, { Component } from 'react'
 
 export default class Page extends Component {
-  onYearBtnClick(e) {
-    this.props.setYear(+e.target.innerText)
+  onChangeSpeed(e) {
+    this.props.setSpeed(+e.target.value)
   }
   render() {
-    const { year, photos } = this.props
     return <div>
-      <p>
-        <button onClick={::this.onYearBtnClick}>2016</button>
-        <button onClick={::this.onYearBtnClick}>2015</button>
-        <button onClick={::this.onYearBtnClick}>2014</button>
-      </p>
-      <h3>{year} год</h3>
-      <p>У тебя {photos.length} фото.</p>
+      <div>
+        <label>
+          Speed: 
+          <textarea onChange={this.onChangeSpeed.bind(this)} />
+        </label>
+      </div>
     </div>
   }
 }
 
-Page.propTypes = {
-  year: PropTypes.number.isRequired,
-  photos: PropTypes.array.isRequired,
-  setYear: PropTypes.func.isRequired
-}
