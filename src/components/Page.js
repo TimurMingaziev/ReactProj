@@ -3,10 +3,6 @@ import { validateMinMaxValue } from '../services/validationService'
 
 var { minValue, maxValue } = 0;
 
-//Может стоит не использовать e.target.value а юзать как-то props данного компонента...
-//Поля Speed, CPU, etc. - свойства Page? объекты : {name: 'Speed:', method}... 
-//TODO: realize render label if isValidated = false...
-
 export default class Page extends Component {
   onChangeSpeed(e) {
     if (e.target.value >= minValue && e.target.value <= maxValue)
@@ -17,7 +13,6 @@ export default class Page extends Component {
     this.props.setCPU(+e.target.value)
   }
 
-  //Have no ideas how to remove duplication code for now
   onChangeMinSpeedValue(e) {
     minValue = e.target.value
     let isValidated = validateMinMaxValue(parseInt(minValue), parseInt(maxValue))

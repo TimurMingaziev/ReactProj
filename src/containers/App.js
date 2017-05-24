@@ -1,25 +1,27 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+
 import Page from '../components/Page'
+import GaugeComponent from '../components/Gauge'
+
 import * as speedActions from '../actions/SpeedometerActions'
 import * as stripeActions from '../actions/StripeActions'
-import ReactHighcharts from 'react-highcharts/bundle/ReactHighcharts'
 
 import { Line } from 'rc-progress';
 
 class App extends Component {
     render() {
-        const { page, speedometer, stripe} = this.props
-        const { setSpeed } = this.props.speedActions
+        const { page, stripe } = this.props
+        const { setSpeed, setMaxSpeed, setMinSpeed } = this.props.speedActions
         const { setCPU } = this.props.stripeActions
-        const { setMaxSpeed } = this.props.speedActions
-        const { setMinSpeed } = this.props.speedActions
-        
+        const divStyle = {
+            color: 'blue'
+        };
         return <div>
-            <Page speed={page.speed} setSpeed={setSpeed} setCPU={setCPU} setMinSpeed={setMinSpeed} setMaxSpeed={setMaxSpeed}/>
-            <ReactHighcharts config={speedometer.config} />
-            <Line percent={stripe.percent} strokeWidth={stripe.strokeWidth} strokeColor={stripe.strokeColor} gapPosition="top" />
+           <div><Page speed={page.speed} setSpeed={setSpeed} setCPU={setCPU} setMinSpeed={setMinSpeed} setMaxSpeed={setMaxSpeed} />
+            <Line percent={stripe.percent} strokeWidth={stripe.strokeWidth} strokeColor={stripe.strokeColor} /></div>
+            <div style = {divStyle}><GaugeComponent value="1500" minValue = "0" maxValue ="3000" /></div>
         </div>
     }
 }
