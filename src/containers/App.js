@@ -4,24 +4,36 @@ import { connect } from 'react-redux'
 
 import Page from '../components/Page'
 import GaugeComponent from '../components/Gauge'
+import StripeComponent from '../components/Stripe'
 
-import * as speedActions from '../actions/SpeedometerActions'
+import * as speedometerActions from '../actions/SpeedometerActions'
 import * as stripeActions from '../actions/StripeActions'
-
-import { Line } from 'rc-progress';
 
 class App extends Component {
     render() {
-        const { page, stripe } = this.props
-        const { setSpeed, setMaxSpeed, setMinSpeed } = this.props.speedActions
+        const { page, stripe, speedometer } = this.props
+        const { setSpeed, setMaxSpeed, setMinSpeed } = this.props.speedometerActions
         const { setCPU } = this.props.stripeActions
-        const divStyle = {
-            color: 'blue'
-        };
+
         return <div>
-           <div><Page speed={page.speed} setSpeed={setSpeed} setCPU={setCPU} setMinSpeed={setMinSpeed} setMaxSpeed={setMaxSpeed} />
-            <Line percent={stripe.percent} strokeWidth={stripe.strokeWidth} strokeColor={stripe.strokeColor} /></div>
-            <div style = {divStyle}><GaugeComponent value="1500" minValue = "0" maxValue ="3000" /></div>
+            <div>
+                <Page
+                    speed={page.speed}
+                    setSpeed={setSpeed}
+                    setCPU={setCPU}
+                    setMinSpeed={setMinSpeed}
+                    setMaxSpeed={setMaxSpeed} />
+                <StripeComponent
+                    percent={stripe.percent}
+                    strokeWidth={stripe.strokeWidth}
+                    strokeColor={stripe.strokeColor} />
+            </div>
+
+            <GaugeComponent
+                speedValue={speedometer.speedValue}
+                minValue={speedometer.minSpeed}
+                maxValue={speedometer.maxSpeed} />
+
         </div>
     }
 }
@@ -36,7 +48,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        speedActions: bindActionCreators(speedActions, dispatch),
+        speedometerActions: bindActionCreators(speedometerActions, dispatch),
         stripeActions: bindActionCreators(stripeActions, dispatch)
     }
 }

@@ -2,8 +2,8 @@ import { SET_CPU } from '../constants/Stripe'
 
 
 const initialState = {
-    percent: '0',
-    strokeWidth: '1',
+    percent: 50,
+    strokeWidth: 1,
     strokeColor: '#7cb5ec'
 }
 

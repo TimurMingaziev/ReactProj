@@ -1,1 +1,0 @@
-//TODO: realize common props, for exmpl color

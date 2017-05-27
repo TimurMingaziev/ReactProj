@@ -3,15 +3,15 @@ import { SET_MIN_SPEED } from '../constants/Speedometer'
 import { SET_SPEED } from '../constants/Speedometer'
 
 const initialState = {
-    speed: 0,
+    speedValue: 30,
     minSpeed: 0,
-    maxSpeed: 0
+    maxSpeed: 100
 }
 
 export default function speedometer(state = initialState, action) {
     switch (action.type) {
         case SET_SPEED:
-                return { ...state, speed: action.payload}
+                return { ...state, speedValue: action.payload}
 
         case SET_MAX_SPEED:
                 return { ...state, maxSpeed: action.payload }
