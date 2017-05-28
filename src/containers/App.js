@@ -7,10 +7,8 @@ import StripeComponent from '../components/Stripe'
 export default class App extends Component {
     render() {
         return <div>
-            <div>
-                <Page />
-                <StripeComponent />
-            </div>
+            <Page />
+            <StripeComponent />
             <GaugeComponent />
         </div>
     }
