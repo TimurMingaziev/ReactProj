@@ -8,7 +8,6 @@ import * as stripeActions from '../actions/StripeActions'
 class Page extends Component {
 
   onChangeSpeed(e) {
-    console.log(this.props)
     this.props.speedometerActions.setSpeed(+e.target.value)
   }
 
@@ -22,6 +21,16 @@ class Page extends Component {
 
   onChangeMaxSpeedValue(e) {
     this.props.speedometerActions.setMaxSpeed(+e.target.value)
+  }
+
+  runTimer(e) {
+    console.log(e.target.checked);
+    if (e.target.checked == true)
+      setInterval(this.timer, 1000)
+
+  }
+  timer() {
+    console.log(this);
   }
 
   render() {
@@ -46,6 +55,7 @@ class Page extends Component {
           </tr>
         </tbody>
       </table>
+      <input type="checkbox" onChange={this.runTimer.bind(this)}> Run Large Hadron Collider </input>
     </div>
   }
 }

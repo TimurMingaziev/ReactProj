@@ -1,6 +1,5 @@
 import { SET_CPU } from '../constants/Stripe'
 
-
 const initialState = {
     percent: 0
 }

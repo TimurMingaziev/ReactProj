@@ -3,7 +3,6 @@ import { Line } from 'rc-progress';
 import { connect } from 'react-redux'
 
 class StripeComponent extends Component {
-
     render() {
         return <Line
             percent={this.props.stripe.percent}
