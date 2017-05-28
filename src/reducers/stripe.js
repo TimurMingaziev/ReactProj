@@ -2,9 +2,7 @@ import { SET_CPU } from '../constants/Stripe'
 
 
 const initialState = {
-    percent: 50,
-    strokeWidth: 1,
-    strokeColor: '#7cb5ec'
+    percent: 0
 }
 
 export default function stripe(state = initialState, action) {

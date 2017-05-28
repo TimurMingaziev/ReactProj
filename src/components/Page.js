@@ -1,20 +1,27 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
-export default class Page extends Component {
+import * as speedometerActions from '../actions/SpeedometerActions'
+import * as stripeActions from '../actions/StripeActions'
+
+class Page extends Component {
+
   onChangeSpeed(e) {
-      this.props.setSpeed(+e.target.value)
+    console.log(this.props)
+    this.props.speedometerActions.setSpeed(+e.target.value)
   }
 
   onChangeCPU(e) {
-    this.props.setCPU(+e.target.value)
+    this.props.stripeActions.setCPU(+e.target.value)
   }
 
   onChangeMinSpeedValue(e) {
-      this.props.setMinSpeed(+e.target.value)
+    this.props.speedometerActions.setMinSpeed(+e.target.value)
   }
 
   onChangeMaxSpeedValue(e) {
-      this.props.setMaxSpeed(+e.target.value)
+    this.props.speedometerActions.setMaxSpeed(+e.target.value)
   }
 
   render() {
@@ -42,3 +49,12 @@ export default class Page extends Component {
     </div>
   }
 }
+
+function mapDispatchToProps(dispatch) {
+  return {
+    speedometerActions: bindActionCreators(speedometerActions, dispatch),
+    stripeActions: bindActionCreators(stripeActions, dispatch)
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Page)
