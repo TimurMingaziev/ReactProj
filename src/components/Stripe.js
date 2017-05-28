@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Line } from 'rc-progress';
+import { Line } from 'rc-progress'
 import { connect } from 'react-redux'
 
 class StripeComponent extends Component {

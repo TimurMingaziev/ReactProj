@@ -10,6 +10,6 @@ export default function stripe(state = initialState, action) {
             return { ...state, percent: action.payload }
 
         default:
-            return state;
+            return state
     }
 }

@@ -20,6 +20,6 @@ export default function speedometer(state = initialState, action) {
                         return { ...state, minSpeed: action.payload }
 
                 default:
-                        return state;
+                        return state
         }
 }

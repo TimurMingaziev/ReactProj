@@ -6,18 +6,18 @@ import { options } from '../constants/Speedometer'
 
 class GaugeComponent extends Component {
   componentDidMount() {
-    var target = this.refs.foo;
-    this.gauge = new Gauge(target).setOptions(options);
+    var target = this.refs.foo
+    this.gauge = new Gauge(target).setOptions(options)
     this.gauge.minValue = this.props.speedometer.minSpeed
-    this.gauge.maxValue = this.props.speedometer.maxSpeed;
-    this.gauge.set(this.props.speedometer.speedValue);
+    this.gauge.maxValue = this.props.speedometer.maxSpeed
+    this.gauge.set(this.props.speedometer.speedValue)
   }
 
   render() {
     if (this.gauge) {
-      this.gauge.minValue = this.props.speedometer.minSpeed;
-      this.gauge.maxValue = this.props.speedometer.maxSpeed;
-      this.gauge.set(this.props.speedometer.speedValue);
+      this.gauge.minValue = this.props.speedometer.minSpeed
+      this.gauge.maxValue = this.props.speedometer.maxSpeed
+      this.gauge.set(this.props.speedometer.speedValue)
     }
 
     return <div>
