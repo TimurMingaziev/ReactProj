@@ -11,17 +11,17 @@ class Page extends Component {
   //Надо было юзать submit :) 
   onChangeSpeed(e) {
     let value = e.target.value
-
     if (!isFinite(value))
       return
+
     this.props.speedometerActions.setSpeed(+e.target.value)
   }
 
   onChangeCPU(e) {
     let value = e.target.value
-
     if (!isFinite(value) || value > 100 || value < 0)
       return
+
     this.props.stripeActions.setCPU(+value)
   }
 
@@ -29,6 +29,7 @@ class Page extends Component {
     let value = e.target.value
     if (!isFinite(value) || value < 0 || value >= this.props.speedometer.maxSpeed)
       return
+
     this.props.speedometerActions.setMinSpeed(+value)
   }
 
@@ -36,6 +37,7 @@ class Page extends Component {
     let value = e.target.value
     if (!isFinite(value) || value <= 0)
       return
+
     this.props.speedometerActions.setMaxSpeed(+value)
   }
 
@@ -46,9 +48,10 @@ class Page extends Component {
   }
 
   timer() {
-    console.log(this.props)
-    this.props.stripeActions.setCPU(Math.floor((Math.random() * 100)))
-    this.props.speedometerActions.setSpeed(Math.floor((Math.random() * this.props.speedometer.maxSpeed - this.props.speedometer.minSpeed)))
+    let randomSpeed = Math.floor((Math.random() * this.props.speedometer.maxSpeed - this.props.speedometer.minSpeed))
+    let randomCpu = Math.floor((Math.random() * 100))
+    this.props.stripeActions.setCPU(randomCpu)
+    this.props.speedometerActions.setSpeed(randomSpeed)
   }
 
   render() {
