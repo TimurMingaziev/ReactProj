@@ -5,44 +5,36 @@ import { bindActionCreators } from 'redux'
 import * as speedometerActions from '../actions/SpeedometerActions'
 import * as stripeActions from '../actions/StripeActions'
 
-var refreshIntervalId = {}
+let refreshIntervalId = {}
+
 class Page extends Component {
 
-  //Надо было юзать submit :) 
   onChangeSpeed(e) {
     let value = e.target.value
-    if (!isFinite(value))
-      return
-
-    this.props.speedometerActions.setSpeed(+e.target.value)
+    if (isFinite(value))
+      this.props.speedometerActions.setSpeed(+e.target.value)
   }
 
   onChangeCPU(e) {
     let value = e.target.value
-    if (!isFinite(value) || value > 100 || value < 0)
-      return
-
-    this.props.stripeActions.setCPU(+value)
+    if (isFinite(value) && value <= 100 && value >= 0)
+      this.props.stripeActions.setCPU(+value)
   }
 
   onChangeMinSpeedValue(e) {
     let value = e.target.value
-    if (!isFinite(value) || value < 0 || value >= this.props.speedometer.maxSpeed)
-      return
-
-    this.props.speedometerActions.setMinSpeed(+value)
+    if (isFinite(value) && value >= 0 && value < this.props.speedometer.maxSpeed)
+      this.props.speedometerActions.setMinSpeed(+value)
   }
 
   onChangeMaxSpeedValue(e) {
     let value = e.target.value
-    if (!isFinite(value) || value <= 0)
-      return
-
-    this.props.speedometerActions.setMaxSpeed(+value)
+    if (isFinite(value) && value > 0)
+      this.props.speedometerActions.setMaxSpeed(+value)
   }
 
   runTimer(e) {
-    if (e.target.checked == true)
+    if (e.target.checked)
       refreshIntervalId = setInterval(this.timer.bind(this), 3000)
     else clearInterval(refreshIntervalId)
   }
