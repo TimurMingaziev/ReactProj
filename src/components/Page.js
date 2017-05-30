@@ -11,7 +11,7 @@ class Page extends Component {
 
   onChangeSpeed(e) {
     let value = e.target.value
-    if (isFinite(value))
+    if (isFinite(value) && value <= this.props.speedometer.maxSpeed && value >= this.props.speedometer.minSpeed)
       this.props.speedometerActions.setSpeed(+e.target.value)
   }
 
