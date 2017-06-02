@@ -1,10 +1,10 @@
 import { Gauge } from 'gauge.js'
-import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import { options } from '../constants/Speedometer'
+import ICommonChart from '../interfaces/ICommonChart'
 
-class GaugeComponent extends Component {
+class GaugeComponent extends ICommonChart {
   componentDidMount() {
     var target = this.refs.foo
     this.gauge = new Gauge(target).setOptions(options)
