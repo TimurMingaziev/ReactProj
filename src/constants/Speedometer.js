@@ -4,7 +4,7 @@ export const SET_MIN_SPEED = 'SET_MIN_SPEED'
 
 export const options = {
     angle: -0.5,
-    lineWidth: 0.0,
+    lineWidth: 0.1,
     pointer: {
         length: 0.5,
         strokeWidth: 0.035,
@@ -17,7 +17,7 @@ export const options = {
     generateGradient: true,
     staticLabels: {
         font: '10px sans-serif',  // Specifies font
-        labels: [0, 50, 100],  // Print labels at these values
+        labels: [0, 20,  40, 60, 80, 100],  // Print labels at these values
         color: '#000000',  // Optional: Label text color
         fractionDigits: 0  // Optional: Numerical precision. 0=round off.
     }
