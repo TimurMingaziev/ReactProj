@@ -23,11 +23,7 @@ class GaugeComponent extends ICommonChart {
     }
 
     return <div>
-      Min value = {this.props.speedometer.minSpeed}
-      <center>
       <canvas ref="foo" ></canvas>
-      </center>
-      Max value = {this.props.speedometer.maxSpeed}
     </div>
   }
 }

@@ -6,9 +6,12 @@ import { ICommonChart } from '../interfaces/ICommonChart'
 export default class StripeComponent extends ICommonChart {
     render() {
         super.render()
-        return <Line
-            percent={this.value}
-            strokeWidth="1"
-            strokeColor="#7cb5ec" />
+        return <div>
+            <h3> Line Progress {this.value}%</h3>
+            <Line
+                percent={this.value}
+                strokeWidth="1"
+                strokeColor="#7cb5ec" />
+        </div>
     }
 }

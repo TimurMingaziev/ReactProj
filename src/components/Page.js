@@ -14,25 +14,25 @@ class Page extends Component {
 
   onChangeSpeed(e) {
     let value = e.target.value
-    if (isFinite(value) && value <= this.props.speedometer.maxSpeed && value >= this.props.speedometer.minSpeed)
+    if (value <= this.props.speedometer.maxSpeed && value >= this.props.speedometer.minSpeed)
       this.props.speedometerActions.setSpeed(+e.target.value)
   }
 
   onChangeCPU(e) {
     let value = e.target.value
-    if (isFinite(value) && value <= 100 && value >= 0)
+    if (value <= 100 && value >= 0)
       this.props.stripeActions.setCPU(+value)
   }
 
   onChangeMinSpeedValue(e) {
     let value = e.target.value
-    if (isFinite(value) && value >= 0 && value < this.props.speedometer.maxSpeed)
+    if (value >= 0 && value < this.props.speedometer.maxSpeed)
       this.props.speedometerActions.setMinSpeed(+value)
   }
 
   onChangeMaxSpeedValue(e) {
     let value = e.target.value
-    if (isFinite(value) && value > 0)
+    if (value > 0)
       this.props.speedometerActions.setMaxSpeed(+value)
   }
 
@@ -55,19 +55,19 @@ class Page extends Component {
         <tbody>
           <tr>
             <td>Speed:</td>
-            <td><textarea onChange={this.onChangeSpeed.bind(this)} value={this.props.speedometer.speedValue} /></td>
+            <td><input type="number" onChange={this.onChangeSpeed.bind(this)} value={this.props.speedometer.speedValue} /></td>
           </tr>
           <tr>
             <td>CPU usage:</td>
-            <td><textarea ref="CPU" onChange={this.onChangeCPU.bind(this)} value={this.props.stripe.percent} /></td>
+            <td><input type="number" ref="CPU" onChange={this.onChangeCPU.bind(this)} value={this.props.stripe.percent} /></td>
           </tr>
           <tr>
             <td>Min speed value:</td>
-            <td><textarea onChange={this.onChangeMinSpeedValue.bind(this)} value={this.props.speedometer.minSpeed} /></td>
+            <td><input type="number" onChange={this.onChangeMinSpeedValue.bind(this)} value={this.props.speedometer.minSpeed} /></td>
           </tr>
           <tr>
             <td>Max speed value:</td>
-            <td><textarea onChange={this.onChangeMaxSpeedValue.bind(this)} value={this.props.speedometer.maxSpeed} />
+            <td><input type="number" onChange={this.onChangeMaxSpeedValue.bind(this)} value={this.props.speedometer.maxSpeed} />
             </td>
           </tr>
         </tbody>

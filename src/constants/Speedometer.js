@@ -3,7 +3,7 @@ export const SET_MAX_SPEED = 'SET_MAX_SPEED'
 export const SET_MIN_SPEED = 'SET_MIN_SPEED'
 
 export const options = {
-    angle: -0.5,
+    angle: -0.4,
     lineWidth: 0.1,
     pointer: {
         length: 0.5,
@@ -16,9 +16,9 @@ export const options = {
     highDpiSupport: true,
     generateGradient: true,
     staticLabels: {
-        font: '10px sans-serif',  // Specifies font
-        labels: [0, 20,  40, 60, 80, 100],  // Print labels at these values
-        color: '#000000',  // Optional: Label text color
-        fractionDigits: 0  // Optional: Numerical precision. 0=round off.
+        font: '10px sans-serif',
+        labels: [0, 20,  40, 60, 80, 100],
+        color: '#000000',
+        fractionDigits: 0
     }
 }
