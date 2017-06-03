@@ -1,9 +1,8 @@
 import React from 'react'
 
-class ICommonChart extends React.Component {
-   render(){
-      console.log(this.props) 
-   }
-}
+export class ICommonChart extends React.Component {
 
-export default ICommonChart
+    render() {
+        this.value = this.props.value
+    }
+}

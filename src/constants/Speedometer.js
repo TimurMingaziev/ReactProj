@@ -13,5 +13,12 @@ export const options = {
     colorStart: '#6FADCF',
     colorStop: '#8FC0DA',
     radiusScale: 0.75,
-    highDpiSupport: true
+    highDpiSupport: true,
+    generateGradient: true,
+    staticLabels: {
+        font: '10px sans-serif',  // Specifies font
+        labels: [0, 50, 100],  // Print labels at these values
+        color: '#000000',  // Optional: Label text color
+        fractionDigits: 0  // Optional: Numerical precision. 0=round off.
+    }
 }

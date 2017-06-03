@@ -5,6 +5,9 @@ import { bindActionCreators } from 'redux'
 import * as speedometerActions from '../actions/SpeedometerActions'
 import * as stripeActions from '../actions/StripeActions'
 
+import GaugeComponent from '../components/Gauge'
+import StripeComponent from '../components/Stripe'
+
 let refreshIntervalId = {}
 
 class Page extends Component {
@@ -73,7 +76,8 @@ class Page extends Component {
         Run Large Hadron Collider:
          <input type="checkbox" name="name" onChange={this.runTimer.bind(this)} />
       </label>
-
+      <StripeComponent value = {this.props.stripe.percent}/>
+      <GaugeComponent  value = {this.props.speedometer.speedValue}/>
     </div>
   }
 }

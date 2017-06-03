@@ -8,8 +8,6 @@ export default class App extends Component {
     render() {
         return <div>
             <Page />
-            <StripeComponent />
-            <GaugeComponent />
         </div>
     }
 }
