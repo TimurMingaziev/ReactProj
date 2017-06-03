@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Line } from 'rc-progress'
 import { connect } from 'react-redux'
+import { ICommonChart } from '../interfaces/ICommonChart'
 
-class StripeComponent extends Component {
+class StripeComponent extends ICommonChart {
     render() {
         return <Line
             percent={this.props.stripe.percent}
