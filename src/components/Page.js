@@ -3,27 +3,13 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import * as speedometerActions from '../actions/SpeedometerActions'
-import * as stripeActions from '../actions/StripeActions'
 
 import GaugeComponent from '../components/Gauge'
 import StripeComponent from '../components/Stripe'
 
-let refreshIntervalId = {}
+let refreshIntervalId
 
 class Page extends Component {
-
-  onChangeSpeed(e) {
-    let value = e.target.value
-    if (value <= this.props.speedometer.maxSpeed && value >= this.props.speedometer.minSpeed)
-      this.props.speedometerActions.setSpeed(+e.target.value)
-  }
-
-  onChangeCPU(e) {
-    let value = e.target.value
-    if (value <= 100 && value >= 0)
-      this.props.stripeActions.setCPU(+value)
-  }
-
   onChangeMinSpeedValue(e) {
     let value = e.target.value
     if (value >= 0 && value < this.props.speedometer.maxSpeed)
@@ -32,24 +18,21 @@ class Page extends Component {
 
   onChangeMaxSpeedValue(e) {
     let value = e.target.value
-    if (value > 0)
+    if (value >= 0 && value > this.props.speedometer.minSpeed && value.length <= 7)
       this.props.speedometerActions.setMaxSpeed(+value)
   }
 
-  runTimer(e) {
-    if (e.target.checked)
+  runTimer() {
+    if (!refreshIntervalId)
       refreshIntervalId = setInterval(this.timer.bind(this), 3000)
-    else clearInterval(refreshIntervalId)
   }
 
   timer() {
-    let randomSpeed = Math.floor((Math.random() * this.props.speedometer.maxSpeed - this.props.speedometer.minSpeed))
-    let randomCpu = Math.floor((Math.random() * 100))
-    // this.props.stripeActions.setCPU(randomCpu)
+    let randomSpeed = Math.floor((Math.random() * (this.props.speedometer.maxSpeed - this.props.speedometer.minSpeed)) + this.props.speedometer.minSpeed)
     this.props.speedometerActions.setSpeed(randomSpeed)
   }
 
-  stripeValue(){
+  stripeValue() {
     let range = this.props.speedometer.maxSpeed - this.props.speedometer.minSpeed
     let value = this.props.speedometer.speedValue - this.props.speedometer.minSpeed
     let percent = value * 100 / range
@@ -57,16 +40,13 @@ class Page extends Component {
   }
 
   render() {
+    { this.runTimer() }
     return <div>
       <table>
         <tbody>
           <tr>
             <td>Speed:</td>
-            <td><input type="number" onChange={this.onChangeSpeed.bind(this)} value={this.props.speedometer.speedValue} /></td>
-          </tr>
-          <tr>
-            <td>CPU usage:</td>
-            <td><input type="number" ref="CPU" onChange={this.onChangeCPU.bind(this)} value={this.props.stripe.percent} /></td>
+            <td><input type="number" value={this.props.speedometer.speedValue} /></td>
           </tr>
           <tr>
             <td>Min speed value:</td>
@@ -79,46 +59,10 @@ class Page extends Component {
           </tr>
         </tbody>
       </table>
-      <label htmlFor="name">
-        Run Large Hadron Collider:
-         <input type="checkbox" name="name" onChange={this.runTimer.bind(this)} />
-      </label>
 
-
-      <div style={{ position: 'absolute', width: '500px', height: '100px'}}>
-
-        <div style={{ position: 'absolute', width: 'auto', height: '30px', top: '42px' }}>
-          {this.props.speedometer.minSpeed}
-          <div style={{ position: 'relative' }}>|</div>
-        </div>
-
-        <div style={{ position: 'absolute', width: 'auto', height: '30px', top: '42px', left:'100' }}>
-          {this.props.speedometer.maxSpeed / 5 }
-          <div style={{ position: 'relative' }}>|</div>
-        </div>
-
-        <div style={{ position: 'absolute', width: 'auto', height: '30px', top: '42px', left:'200' }}>
-          {this.props.speedometer.maxSpeed / 2.5 }
-          <div style={{ position: 'relative' }}>|</div>
-        </div>
-
-        <div style={{ position: 'absolute', width: 'auto', height: '30px', top: '42px', left:'300' }}>
-          {Math.round(this.props.speedometer.maxSpeed / 1.666666666666667) }
-          <div style={{ position: 'relative' }}>|</div>
-        </div>
-
-        <div style={{ position: 'absolute', width: 'auto', height: '30px', top: '42px', left:'400' }}>
-           {Math.round(this.props.speedometer.maxSpeed / 1.25) }
-          <div style={{ position: 'relative' }}>|</div>
-        </div>
-
-        <div style={{ position: 'absolute', width: 'auto', height: '30px', top: '42px', left:'500' }}>
-          {this.props.speedometer.maxSpeed}
-          <div style={{ position: 'relative'}}>|</div>
-        </div>
-
-        <StripeComponent value={this.stripeValue()} />
-        <GaugeComponent value={this.props.speedometer.speedValue} />
+      <div style={{ position: 'absolute', width: '500px', height: '100px' }}>
+        <StripeComponent value={this.stripeValue()} minValue={this.props.speedometer.minSpeed} maxValue={this.props.speedometer.maxSpeed} />
+        <GaugeComponent value={this.props.speedometer.speedValue} minValue={this.props.speedometer.minSpeed} maxValue={this.props.speedometer.maxSpeed} />
       </div>
     </div>
   }
@@ -126,15 +70,13 @@ class Page extends Component {
 
 function mapStateToProps(state) {
   return {
-    speedometer: state.speedometer,
-    stripe: state.stripe
+    speedometer: state.speedometer
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    speedometerActions: bindActionCreators(speedometerActions, dispatch),
-    stripeActions: bindActionCreators(stripeActions, dispatch)
+    speedometerActions: bindActionCreators(speedometerActions, dispatch)
   }
 }
 

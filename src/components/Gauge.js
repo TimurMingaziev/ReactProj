@@ -13,26 +13,30 @@ class GaugeComponent extends ICommonChart {
     this.gauge.set(this.props.speedometer.speedValue)
   }
 
+  setLabels() {
+    this.gauge.options.staticLabels.labels = [
+      this.props.speedometer.minSpeed,
+      Math.round((this.props.speedometer.maxSpeed - this.props.speedometer.minSpeed) / 5 + this.props.speedometer.minSpeed),
+      Math.round((this.props.speedometer.maxSpeed - this.props.speedometer.minSpeed) / 2.5 + this.props.speedometer.minSpeed),
+      Math.round((this.props.speedometer.maxSpeed - this.props.speedometer.minSpeed) / 1.666666666666667 + this.props.speedometer.minSpeed),
+      Math.round((this.props.speedometer.maxSpeed - this.props.speedometer.minSpeed) / 1.25 + this.props.speedometer.minSpeed),
+      this.props.speedometer.maxSpeed
+    ]
+  }
+
   render() {
+    console.log('render')
     super.render()
     if (this.gauge) {
-      this.gauge.options.staticLabels.labels = [
-        this.props.speedometer.minSpeed,
-        Math.round(this.props.speedometer.maxSpeed / 5),
-        Math.round(this.props.speedometer.maxSpeed / 2.5),
-        Math.round(this.props.speedometer.maxSpeed / 1.666666666666667),
-        Math.round(this.props.speedometer.maxSpeed / 1.25),
-        this.props.speedometer.maxSpeed
-        ]
-        
-      this.gauge.minValue = this.props.speedometer.minSpeed
-      this.gauge.maxValue = this.props.speedometer.maxSpeed
+      this.setLabels()
+      this.gauge.minValue = this.minValue
+      this.gauge.maxValue = this.maxValue
       this.gauge.set(this.value)
     }
 
     return <div>
-          <h3>Circle</h3>
-          <canvas ref="foo" ></canvas>
+      <h3>Circle</h3>
+      <canvas ref="foo" ></canvas>
     </div>
   }
 }
