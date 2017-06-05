@@ -25,7 +25,6 @@ class GaugeComponent extends ICommonChart {
   }
 
   render() {
-    console.log('render')
     super.render()
     if (this.gauge) {
       this.setLabels()

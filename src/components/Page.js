@@ -40,7 +40,7 @@ class Page extends Component {
   }
 
   render() {
-    { this.runTimer() }
+    this.runTimer()
     return <div>
       <table>
         <tbody>

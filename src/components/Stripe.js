@@ -8,6 +8,7 @@ export default class StripeComponent extends ICommonChart {
     super.render()
     return <div>
       <h3> Line </h3>
+      
       <div style={{ position: 'absolute', width: 'auto', height: '30px', top: '42px' }}>
         {this.minValue}
         <div style={{ position: 'relative' }}>|</div>
@@ -24,7 +25,7 @@ export default class StripeComponent extends ICommonChart {
       </div>
 
       <div style={{ position: 'absolute', width: 'auto', height: '30px', top: '42px', left: '300' }}>
-        {Math.round((this.minValue - this.minValue) / 1.666666666666667 + this.minValue)}
+        {Math.round((this.maxValue - this.minValue) / 1.666666666666667 + this.minValue)}
         <div style={{ position: 'relative' }}>|</div>
       </div>
 
@@ -37,6 +38,7 @@ export default class StripeComponent extends ICommonChart {
         {this.maxValue}
         <div style={{ position: 'relative' }}>|</div>
       </div>
+
       <Line
         percent={this.value}
         strokeWidth="1"
