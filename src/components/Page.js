@@ -20,7 +20,6 @@ class Page extends Component {
     let value = e.target.value
     if (value >= 0 && value.length <= 7)
       if (value > this.props.speedometer.minSpeed)
-
         this.props.speedometerActions.setMaxSpeed(+value)
       else
         this.props.speedometerActions.setMaxSpeed(+this.props.speedometer.minSpeed + 1)
