@@ -45,8 +45,15 @@ class Page extends Component {
   timer() {
     let randomSpeed = Math.floor((Math.random() * this.props.speedometer.maxSpeed - this.props.speedometer.minSpeed))
     let randomCpu = Math.floor((Math.random() * 100))
-    this.props.stripeActions.setCPU(randomCpu)
+    // this.props.stripeActions.setCPU(randomCpu)
     this.props.speedometerActions.setSpeed(randomSpeed)
+  }
+
+  stripeValue(){
+    let range = this.props.speedometer.maxSpeed - this.props.speedometer.minSpeed
+    let value = this.props.speedometer.speedValue - this.props.speedometer.minSpeed
+    let percent = value * 100 / range
+    return percent
   }
 
   render() {
@@ -76,8 +83,43 @@ class Page extends Component {
         Run Large Hadron Collider:
          <input type="checkbox" name="name" onChange={this.runTimer.bind(this)} />
       </label>
-      <StripeComponent value = {this.props.stripe.percent}/>
-      <GaugeComponent  value = {this.props.speedometer.speedValue}/>
+
+
+      <div style={{ position: 'absolute', width: '500px', height: '100px'}}>
+
+        <div style={{ position: 'absolute', width: 'auto', height: '30px', top: '42px' }}>
+          {this.props.speedometer.minSpeed}
+          <div style={{ position: 'relative' }}>|</div>
+        </div>
+
+        <div style={{ position: 'absolute', width: 'auto', height: '30px', top: '42px', left:'100' }}>
+          {this.props.speedometer.maxSpeed / 5 }
+          <div style={{ position: 'relative' }}>|</div>
+        </div>
+
+        <div style={{ position: 'absolute', width: 'auto', height: '30px', top: '42px', left:'200' }}>
+          {this.props.speedometer.maxSpeed / 2.5 }
+          <div style={{ position: 'relative' }}>|</div>
+        </div>
+
+        <div style={{ position: 'absolute', width: 'auto', height: '30px', top: '42px', left:'300' }}>
+          {Math.round(this.props.speedometer.maxSpeed / 1.666666666666667) }
+          <div style={{ position: 'relative' }}>|</div>
+        </div>
+
+        <div style={{ position: 'absolute', width: 'auto', height: '30px', top: '42px', left:'400' }}>
+           {Math.round(this.props.speedometer.maxSpeed / 1.25) }
+          <div style={{ position: 'relative' }}>|</div>
+        </div>
+
+        <div style={{ position: 'absolute', width: 'auto', height: '30px', top: '42px', left:'500' }}>
+          {this.props.speedometer.maxSpeed}
+          <div style={{ position: 'relative'}}>|</div>
+        </div>
+
+        <StripeComponent value={this.stripeValue()} />
+        <GaugeComponent value={this.props.speedometer.speedValue} />
+      </div>
     </div>
   }
 }

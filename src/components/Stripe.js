@@ -7,7 +7,7 @@ export default class StripeComponent extends ICommonChart {
     render() {
         super.render()
         return <div>
-            <h3> Line Progress {this.value}%</h3>
+            <h3> Line</h3>
             <Line
                 percent={this.value}
                 strokeWidth="1"

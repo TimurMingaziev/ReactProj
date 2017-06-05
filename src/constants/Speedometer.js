@@ -17,7 +17,7 @@ export const options = {
     generateGradient: true,
     staticLabels: {
         font: '10px sans-serif',
-        labels: [0, 20,  40, 60, 80, 100],
+        labels: [0, 20, 40, 60, 80, 100],
         color: '#000000',
         fractionDigits: 0
     }
