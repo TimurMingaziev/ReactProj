@@ -7,9 +7,12 @@ import * as speedometerActions from '../actions/SpeedometerActions'
 import GaugeComponent from '../components/Gauge'
 import StripeComponent from '../components/Stripe'
 
-let refreshIntervalId
-
 class Page extends Component {
+  constructor() {
+    super()
+    this.runTimer()
+  }
+
   onChangeMinSpeedValue(e) {
     let value = e.target.value
     if (value >= 0 && value < this.props.speedometer.maxSpeed)
@@ -26,8 +29,7 @@ class Page extends Component {
   }
 
   runTimer() {
-    if (!refreshIntervalId)
-      refreshIntervalId = setInterval(this.timer.bind(this), 3000)
+    setInterval(this.timer.bind(this), 3000)
   }
 
   timer() {
@@ -43,7 +45,6 @@ class Page extends Component {
   }
 
   render() {
-    this.runTimer()
     return <div>
       <table>
         <tbody>
@@ -63,8 +64,8 @@ class Page extends Component {
         </tbody>
       </table>
 
-      <div style={{ position: 'absolute', width: '500px', height: '100px' }}>
-        <StripeComponent value={this.stripeValue()} minValue={this.props.speedometer.minSpeed} maxValue={this.props.speedometer.maxSpeed} />
+      <div style={{ position: 'relative', width: '500px', height: '100px' }}>
+        <StripeComponent value={this.props.speedometer.speedValue} minValue={this.props.speedometer.minSpeed} maxValue={this.props.speedometer.maxSpeed} />
         <GaugeComponent value={this.props.speedometer.speedValue} minValue={this.props.speedometer.minSpeed} maxValue={this.props.speedometer.maxSpeed} />
       </div>
     </div>

@@ -8,29 +8,28 @@ import { ICommonChart } from '../interfaces/ICommonChart'
 class GaugeComponent extends ICommonChart {
   componentDidMount() {
     this.gauge = new Gauge(this.refs.foo).setOptions(options)
-    this.gauge.minValue = this.props.speedometer.minSpeed
-    this.gauge.maxValue = this.props.speedometer.maxSpeed
-    this.gauge.set(this.props.speedometer.speedValue)
+    this.gauge.minValue = this.getMinValue()
+    this.gauge.maxValue = this.getMaxValue()
+    this.gauge.set(this.getValue())
   }
 
   setLabels() {
     this.gauge.options.staticLabels.labels = [
-      this.props.speedometer.minSpeed,
-      Math.round((this.props.speedometer.maxSpeed - this.props.speedometer.minSpeed) / 5 + this.props.speedometer.minSpeed),
-      Math.round((this.props.speedometer.maxSpeed - this.props.speedometer.minSpeed) / 2.5 + this.props.speedometer.minSpeed),
-      Math.round((this.props.speedometer.maxSpeed - this.props.speedometer.minSpeed) / 1.666666666666667 + this.props.speedometer.minSpeed),
-      Math.round((this.props.speedometer.maxSpeed - this.props.speedometer.minSpeed) / 1.25 + this.props.speedometer.minSpeed),
-      this.props.speedometer.maxSpeed
+      this.getMinValue(),
+      this.getTwentyPercent(),
+      this.getFortyPercent(),
+      this.getSixtyPercent(),
+      this.getEightyPercent(),
+      this.getMaxValue()
     ]
   }
 
   render() {
-    super.render()
     if (this.gauge) {
       this.setLabels()
-      this.gauge.minValue = this.minValue
-      this.gauge.maxValue = this.maxValue
-      this.gauge.set(this.value)
+      this.gauge.minValue = this.getMinValue()
+      this.gauge.maxValue = this.getMaxValue()
+      this.gauge.set(this.getValue())
     }
 
     return <div>
