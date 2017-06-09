@@ -11,40 +11,20 @@ export default class StripeComponent extends ICommonChart {
         return percent
     }
 
+    drawLabels() {
+        let leftAttribute = -102
+        return this.getLabels().map((value, index) =>
+            <div key={index} style={{ position: 'absolute', width: 'auto', height: '30px', top: '23px', left: leftAttribute += 100 }}>
+                {value}
+                <div style={{ position: 'relative' }}>|</div>
+            </div>
+        )
+    }
+
     render() {
         return <div>
             <h3> Line </h3>
-
-            <div style={{ position: 'absolute', width: 'auto', height: '30px', top: '23px' }}>
-                {this.getMinValue()}
-                <div style={{ position: 'relative' }}>|</div>
-            </div>
-
-            <div style={{ position: 'absolute', width: 'auto', height: '30px', top: '23px', left: '100' }}>
-                {this.getTwentyPercent()}
-                <div style={{ position: 'relative' }}>|</div>
-            </div>
-
-            <div style={{ position: 'absolute', width: 'auto', height: '30px', top: '23px', left: '200' }}>
-                {this.getFortyPercent()}
-                <div style={{ position: 'relative' }}>|</div>
-            </div>
-
-            <div style={{ position: 'absolute', width: 'auto', height: '30px', top: '23px', left: '300' }}>
-                {this.getSixtyPercent()}
-                <div style={{ position: 'relative' }}>|</div>
-            </div>
-
-            <div style={{ position: 'absolute', width: 'auto', height: '30px', top: '23px', left: '400' }}>
-                {this.getEightyPercent()}
-                <div style={{ position: 'relative' }}>|</div>
-            </div>
-
-            <div style={{ position: 'absolute', width: 'auto', height: '30px', top: '23px', left: '500' }}>
-                {this.getMaxValue()}
-                <div style={{ position: 'relative' }}>|</div>
-            </div>
-
+            {this.drawLabels()}
             <Line
                 percent={this.stripeValue()}
                 strokeWidth="1"

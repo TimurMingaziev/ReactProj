@@ -6,28 +6,23 @@ export class ICommonChart extends Component {
         return this.props.value
     }
 
+    getLabels(){
+       return [
+            this.props.minValue,
+            Math.round((this.props.maxValue - this.props.minValue) / 5 + this.props.minValue),
+            Math.round((this.props.maxValue - this.props.minValue) / 2.5 + this.props.minValue),
+            Math.round((this.props.maxValue - this.props.minValue) / (5 / 3) + this.props.minValue),
+            Math.round((this.props.maxValue - this.props.minValue) / 1.25 + this.props.minValue),
+            this.props.maxValue
+        ]
+    }
+
     getMinValue() {
         return this.props.minValue
     }
 
     getMaxValue() {
         return this.props.maxValue
-    }
-
-    getTwentyPercent() {
-        return Math.round((this.props.maxValue - this.props.minValue) / 5 + this.props.minValue)
-    }
-
-    getFortyPercent() {
-        return Math.round((this.props.maxValue - this.props.minValue) / 2.5 + this.props.minValue)
-    }
-
-    getSixtyPercent() {
-        return Math.round((this.props.maxValue - this.props.minValue) / (5 / 3) + this.props.minValue)
-    }
-
-    getEightyPercent() {
-        return Math.round((this.props.maxValue - this.props.minValue) / 1.25 + this.props.minValue)
     }
 
     render() {

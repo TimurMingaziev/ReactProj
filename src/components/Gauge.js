@@ -13,25 +13,14 @@ class GaugeComponent extends ICommonChart {
     this.gauge.set(this.getValue())
   }
 
-  setLabels() {
-    this.gauge.options.staticLabels.labels = [
-      this.getMinValue(),
-      this.getTwentyPercent(),
-      this.getFortyPercent(),
-      this.getSixtyPercent(),
-      this.getEightyPercent(),
-      this.getMaxValue()
-    ]
-  }
-
-  render() {
-    if (this.gauge) {
-      this.setLabels()
+  componentDidUpdate(){
+      this.gauge.options.staticLabels.labels = this.getLabels()
       this.gauge.minValue = this.getMinValue()
       this.gauge.maxValue = this.getMaxValue()
       this.gauge.set(this.getValue())
-    }
+  }
 
+  render() {
     return <div>
       <h3>Circle</h3>
       <canvas ref="foo" ></canvas>

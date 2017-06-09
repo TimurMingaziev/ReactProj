@@ -8,9 +8,12 @@ import GaugeComponent from '../components/Gauge'
 import StripeComponent from '../components/Stripe'
 
 class Page extends Component {
-  constructor() {
-    super()
-    this.runTimer()
+  componentDidMount() {
+    this.refreshIntervalId = this.runTimer()
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.refreshIntervalId)
   }
 
   onChangeMinSpeedValue(e) {
@@ -29,19 +32,12 @@ class Page extends Component {
   }
 
   runTimer() {
-    setInterval(this.timer.bind(this), 3000)
+    return setInterval(this.timer.bind(this), 3000)
   }
 
   timer() {
     let randomSpeed = Math.floor((Math.random() * (this.props.speedometer.maxSpeed - this.props.speedometer.minSpeed)) + this.props.speedometer.minSpeed)
     this.props.speedometerActions.setSpeed(randomSpeed)
-  }
-
-  stripeValue() {
-    let range = this.props.speedometer.maxSpeed - this.props.speedometer.minSpeed
-    let value = this.props.speedometer.speedValue - this.props.speedometer.minSpeed
-    let percent = value * 100 / range
-    return percent
   }
 
   render() {
